@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="contents">
+        <item>@string/coroutines_basics</item>
+        <item>@string/scopes_and_concurrency</item>
+        <item>@string/coroutine_context</item>
+        <item>@string/flow</item>
+        <item>@string/cancellation_and_exception_handling</item>
+    </string-array>
+
+    <array name="fragments">
+        <item>@id/coroutineBasicsFragment</item>
+        <item>@id/scopesAndConcurrencyFragment</item>
+        <item>@id/coroutineContextFragment</item>
+        <item>@id/flowFragment</item>
+        <item>@id/cancellationAndExceptionFragment</item>
+    </array>
+
+</resources>

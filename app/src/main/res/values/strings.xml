@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">coroutines-android-playground</string>
+
+    <string name="coroutines_android_playground">Coroutines Android Playground</string>
+
+    <!-- Contents -->
+    <string name="coroutines_basics">Coroutines Basics</string>
+    <string name="scopes_and_concurrency">Scopes and Concurrency</string>
+    <string name="coroutine_context">Coroutine Context</string>
+    <string name="flow">Flow</string>
+    <string name="cancellation_and_exception_handling">Cancellation and Exception Handling</string>
+
 </resources>

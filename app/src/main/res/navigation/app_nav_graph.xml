@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.umerfarooque.coroutinesandroidplayground.HomeFragment"
+        android:label="@string/coroutines_android_playground"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/coroutineBasicsFragment"
+        android:name="com.umerfarooque.coroutinesandroidplayground.CoroutineBasicsFragment"
+        android:label="@string/coroutines_basics"
+        tools:layout="@layout/fragment_coroutine_basics" />
+
+    <fragment
+        android:id="@+id/scopesAndConcurrencyFragment"
+        android:name="com.umerfarooque.coroutinesandroidplayground.ScopesAndConcurrencyFragment"
+        android:label="@string/scopes_and_concurrency"
+        tools:layout="@layout/fragment_scopes_and_concurrency" />
+
+    <fragment
+        android:id="@+id/coroutineContextFragment"
+        android:name="com.umerfarooque.coroutinesandroidplayground.CoroutineContextFragment"
+        android:label="@string/coroutine_context"
+        tools:layout="@layout/fragment_coroutine_context" />
+
+    <fragment
+        android:id="@+id/flowFragment"
+        android:name="com.umerfarooque.coroutinesandroidplayground.FlowFragment"
+        android:label="@string/flow"
+        tools:layout="@layout/fragment_flow" />
+
+    <fragment
+        android:id="@+id/cancellationAndExceptionFragment"
+        android:name="com.umerfarooque.coroutinesandroidplayground.CancellationAndExceptionFragment"
+        android:label="@string/cancellation_and_exception_handling"
+        tools:layout="@layout/fragment_cancellation_and_exception" />
+
+</navigation>

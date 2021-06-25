@@ -53,7 +53,6 @@ class HomeFragment : Fragment() {
     }
 }
 
-
 class ContentsAdapter : RecyclerView.Adapter<ContentsAdapter.ContentsViewHolder>() {
 
     private var contents: List<Pair<String, Int>>? = null

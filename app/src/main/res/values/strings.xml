@@ -10,4 +10,17 @@
     <string name="flow">Flow</string>
     <string name="cancellation_and_exception_handling">Cancellation and Exception Handling</string>
 
+    <!-- Coroutine Basics -->
+    <string name="about_main_thread">The main thread also known as UI thread is responsible for rendering UI. Do not execute long running tasks on this thread as this can block the rendering and UI becomes janky by skipping frames. This problem can be solved by running these tasks on a different thread.\n\nRun a task for 500ms</string>
+    <string name="run_task">Run task</string>
+    <string name="use_different_thread">Use different thread</string>
+    <string name="using_coroutines">Kotlin coroutines can be used to run this task in background. The task can also be run by creating a new thread but threads are expensive. Coroutines are light because they are not tied to the thread they\'re launched in. They can suspend on one thread and resume on another and when suspended they release the underlying thread to be used by other coroutines.</string>
+    <string name="from_the_basics_code">
+        <b>From the code:\n</b>
+        <li><b>Coroutine Builder:</b> <b>launch{ }</b> is a coroutine builder used to launch a new coroutine which continues to run independently with the rest of the code.</li>\n
+        <li><b>CoroutineScope:</b> Coroutines can only be launched from within a CoroutineScope which defines the lifetime of the coroutine. In the above example, <b>lifecycleScope</b> is used which is a predefined in \'lifecycle-runtime-ktx\' library.</li>\n
+        <li><b>CoroutineContext:</b> Coroutines are executed in a CoroutineContext which contains a set of elements like <b>Job</b> and <b>CoroutineDispatcher</b>. Dispatchers determine which thread to be used for coroutine execution. In the above example Dispatchers.Default is used which is optimized to perform CPU intensive work.</li>
+        \n\n<b>Note: </b> Running the above task in a coroutine on the main dispatcher still blocks the main thread.
+    </string>
+
 </resources>

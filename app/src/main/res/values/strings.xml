@@ -1,7 +1,18 @@
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">coroutines-android-playground</string>
 
     <string name="coroutines_android_playground">Coroutines Android Playground</string>
+
+    <string name="active">Active</string>
+    <string name="cancelling">Cancelling</string>
+    <string name="cancelled">Cancelled</string>
+    <string name="completed">Completed</string>
+    <string name="exception">Failed with exception</string>
+
+    <string name="status">Status:</string>
+    <string name="child">Child:</string>
+    <string name="running_time">t=<xliff:g id="time">%d</xliff:g>ms</string>
+    <string name="scope_not_created">Scope not created</string>
 
     <!-- Contents -->
     <string name="coroutines_basics">Coroutines Basics</string>
@@ -22,5 +33,17 @@
         <li><b>CoroutineContext:</b> Coroutines are executed in a CoroutineContext which contains a set of elements like <b>Job</b> and <b>CoroutineDispatcher</b>. Dispatchers determine which thread to be used for coroutine execution. In the above example Dispatchers.Default is used which is optimized to perform CPU intensive work.</li>
         \n\n<b>Note: </b> Running the above task in a coroutine on the main dispatcher still blocks the main thread.
     </string>
+
+    <!-- Scopes and Concurrency -->
+    <string name="scope_intro">A <b>CoroutineScope</b> defines the lifetime of coroutines launched from it. Scope is used to achieve <b>Structured Concurrency</b> and establish parent child relationships between coroutines. An outer scope completes only when all of its children coroutines complete.
+        \nCode inside coroutines runs sequentially by default.
+        \n\nRunning 2 tasks sequentially:
+    </string>
+    <string name="concurrent_tasks">Running the 2 tasks concurrently:</string>
+    <string name="custom_scope"><big><b>Custom Scope</b></big>\n\nUse <b>CoroutineScope()</b> to create a custom scope and <i>cancel it when no longer needed</i> otherwise it can cause leaks. We cannot launch coroutines in a cancelled scope.\n\nRunning task in a custom scope:</string>
+    <string name="create_scope">Create Scope</string>
+    <string name="cancel_scope">Cancel Scope</string>
+    <string name="coroutine_scope">The <b>coroutineScope()</b> function can be used to create a scope and it inherits the context from outer scope but overrides the its Job. The function returns as soon as all children coroutines are completed. If an exception occurs within the body, this function rethrows that exception.</string>
+    <string name="returned_from_function">Function returned</string>
 
 </resources>

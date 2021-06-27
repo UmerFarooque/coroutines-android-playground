@@ -7,18 +7,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <include layout="@layout/content_guidelines" />
-
         <TextView
-            android:id="@+id/intro"
+            android:id="@+id/scope_intro"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium"
             android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_medium"
             android:lineSpacingMultiplier="1.2"
             android:text="@string/about_main_thread"
             android:textAppearance="?textAppearanceBody2"
-            app:layout_constraintEnd_toEndOf="@id/guideline_end"
-            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <FrameLayout
@@ -30,7 +30,7 @@
             android:layout_marginEnd="@dimen/margin_large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/intro">
+            app:layout_constraintTop_toBottomOf="@id/scope_intro">
 
             <View
                 android:id="@+id/anim_view"
@@ -45,43 +45,49 @@
             android:id="@+id/btn_run_task"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium"
             android:layout_marginTop="@dimen/margin_medium"
             android:text="@string/run_task"
-            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/anim_layout" />
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/check_background_thread"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_medium"
             android:minHeight="0dp"
             android:text="@string/use_different_thread"
             app:layout_constraintBottom_toBottomOf="@id/btn_run_task"
-            app:layout_constraintEnd_toEndOf="@id/guideline_end"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/btn_run_task" />
 
         <TextView
             android:id="@+id/coroutines_intro"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium"
             android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginEnd="@dimen/margin_medium"
             android:lineSpacingMultiplier="1.2"
             android:text="@string/using_coroutines"
             android:textAppearance="?textAppearanceBody2"
-            app:layout_constraintEnd_toEndOf="@id/guideline_end"
-            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_run_task" />
 
         <TextView
             android:id="@+id/terms"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium"
             android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginEnd="@dimen/margin_medium"
             android:lineSpacingMultiplier="1.2"
             android:text="@string/from_the_basics_code"
             android:textAppearance="?textAppearanceBody2"
-            app:layout_constraintEnd_toEndOf="@id/guideline_end"
-            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/coroutines_intro" />
 
         <Space

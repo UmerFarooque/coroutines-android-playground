@@ -86,7 +86,9 @@ fun Job.showCompletionInView(
     }
 }
 
+// Mostly called when coroutine is just started.
 fun updateJobStatus(scope: CoroutineScope, coroutineLayout: LayoutCoroutineBinding) {
+    coroutineLayout.log.text = ""
     coroutineLayout.btnPlay.isEnabled = false
     coroutineLayout.statusTv.setJobStatus(scope)
 }

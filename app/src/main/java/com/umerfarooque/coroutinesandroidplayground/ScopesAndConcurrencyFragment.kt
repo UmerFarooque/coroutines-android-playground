@@ -76,6 +76,28 @@ class ScopesAndConcurrencyFragment : Fragment() {
                 binding.example4.log.text = getString(R.string.returned_from_function)
             }.showCompletionInView(lifecycleScope, binding.example4)
         }
+
+        binding.asyncExample.btnPlay.setOnClickListener {
+            lifecycleScope.launch {
+                updateJobStatus(this, binding.asyncExample)
+                val deferred1 = async { taskWithResult() }
+                val deferred2 = async { taskWithResult() }
+                binding.asyncExample.log.text = (deferred1.await() + deferred2.await()).toString()
+            }.showCompletionInView(lifecycleScope, binding.asyncExample)
+        }
+
+        binding.lazyAsync.btnPlay.setOnClickListener {
+            lifecycleScope.launch {
+                binding.lazyAsync.btnPlay.isEnabled = false
+                val deferred = async(start = CoroutineStart.LAZY) {
+                    updateJobStatus(this, binding.lazyAsync)
+                    taskWithResult()
+                }
+                deferred.showCompletionInView(lifecycleScope, binding.lazyAsync)
+                delay(1000)
+                deferred.start()
+            }
+        }
     }
 
     private suspend fun someLongRunningTask() = coroutineScope {
@@ -87,5 +109,10 @@ class ScopesAndConcurrencyFragment : Fragment() {
             updateJobStatus(this, binding.child2)
             longRunningTaskSuspend()
         }.showCompletionInView(this, binding.child2)
+    }
+
+    private suspend fun taskWithResult(): Int {
+        delay(500)
+        return 10
     }
 }

@@ -7,11 +7,10 @@
     <string name="cancelling">Cancelling</string>
     <string name="cancelled">Cancelled</string>
     <string name="completed">Completed</string>
-    <string name="exception">Failed with exception</string>
 
     <string name="status">Status:</string>
     <string name="child">Child:</string>
-    <string name="running_time">t=<xliff:g id="time">%d</xliff:g>ms</string>
+    <string name="running_time">t=<xliff:g id="time">%d</xliff:g> ms</string>
     <string name="scope_not_created">Scope not created</string>
 
     <!-- Contents -->
@@ -40,10 +39,16 @@
         \n\nRunning 2 tasks sequentially:
     </string>
     <string name="concurrent_tasks">Running the 2 tasks concurrently:</string>
-    <string name="custom_scope"><big><b>Custom Scope</b></big>\n\nUse <b>CoroutineScope()</b> to create a custom scope and <i>cancel it when no longer needed</i> otherwise it can cause leaks. We cannot launch coroutines in a cancelled scope.\n\nRunning task in a custom scope:</string>
+    <string name="custom_scope"><big><b>Custom Scope</b></big>\n\nUse <b>CoroutineScope()</b> to create a custom scope and <i>cancel it when no longer needed</i> otherwise it can cause leaks. Coroutines cannot be launched in a cancelled scope.\n\nRunning task in a custom scope:</string>
     <string name="create_scope">Create Scope</string>
     <string name="cancel_scope">Cancel Scope</string>
     <string name="coroutine_scope">The <b>coroutineScope()</b> function can be used to create a scope and it inherits the context from outer scope but overrides the its Job. The function returns as soon as all children coroutines are completed. If an exception occurs within the body, this function rethrows that exception.</string>
     <string name="returned_from_function">Function returned</string>
+    <string name="async"><big><b>async</b></big>\n\nasync{ } is just like launch{ } but it returns a <b>Deferred&lt;T&gt;</b> type instead which represents a promise to provide result later. Calling <b>await()</b> on the Deferred type returns the result. Deferred is a subtype of Job and inherits methods such as cancel() which is used to cancel the coroutine.
+        \n\nRunning task using async:
+    </string>
+    <string name="lazy_async">async{ } can be started lazily by setting start parameter to <b>CoroutineStart.LAZY</b>. If set the coroutine can be started by calling start() or await().\n\n
+        Starting coroutine after 1 sec:
+    </string>
 
 </resources>

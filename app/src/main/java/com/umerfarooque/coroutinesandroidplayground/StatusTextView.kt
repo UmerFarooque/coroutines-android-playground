@@ -6,11 +6,8 @@ import androidx.annotation.ColorRes
 import androidx.annotation.IntDef
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
-import com.umerfarooque.coroutinesandroidplayground.databinding.LayoutCoroutineBinding
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 
 class StatusTextView : AppCompatTextView {
 
@@ -70,25 +67,4 @@ fun Job.getState(): @Status Int {
         isCompleted -> COMPLETED
         else -> NEW
     }
-}
-
-// TODO: Intro on invokeOnCompletion()
-/** Ensure invocation of this method on main thread. */
-fun Job.showCompletionInView(
-    scope: CoroutineScope,
-    coroutineLayout: LayoutCoroutineBinding
-) {
-    invokeOnCompletion { throwable ->
-        coroutineLayout.btnPlay.isEnabled = true
-        scope.launch(Dispatchers.Main) {
-            coroutineLayout.statusTv.setCompletionStatus(throwable)
-        }
-    }
-}
-
-// Mostly called when coroutine is just started.
-fun updateJobStatus(scope: CoroutineScope, coroutineLayout: LayoutCoroutineBinding) {
-    coroutineLayout.log.text = ""
-    coroutineLayout.btnPlay.isEnabled = false
-    coroutineLayout.statusTv.setJobStatus(scope)
 }

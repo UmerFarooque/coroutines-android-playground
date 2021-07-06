@@ -9,6 +9,7 @@
     <string name="completed">Completed</string>
 
     <string name="status">Status:</string>
+    <string name="parent">Parent:</string>
     <string name="child">Child:</string>
     <string name="running_time">t=<xliff:g id="time">%d</xliff:g> ms</string>
     <string name="scope_not_created">Scope not created</string>
@@ -47,8 +48,19 @@
     <string name="async"><big><b>async</b></big>\n\nasync{ } is just like launch{ } but it returns a <b>Deferred&lt;T&gt;</b> type instead which represents a promise to provide result later. Calling <b>await()</b> on the Deferred type returns the result. Deferred is a subtype of Job and inherits methods such as cancel() which is used to cancel the coroutine.
         \n\nRunning task using async:
     </string>
-    <string name="lazy_async">async{ } can be started lazily by setting start parameter to <b>CoroutineStart.LAZY</b>. If set the coroutine can be started by calling start() or await().\n\n
+    <string name="lazy_async">async{ } can be started lazily by setting start parameter to <b>CoroutineStart.LAZY</b>. If set, the coroutine can be started by calling start() or await().\n\n
         Starting coroutine after 1 sec:
     </string>
 
+    <!-- CoroutineContext -->
+    <string name="coroutine_context_intro">CoroutineContext is a set of elements that define behavior of coroutine. The elements are Job, Dispatcher, CoroutineExceptionHandler and CoroutineName. Multiple elements are defined using the \'+\' operator.\n
+        <li><b>Job:</b> Job is used to handle the lifecycle of the coroutine. It can be retrieved using \'coroutineContext[Job]\' expression.</li>\n
+        <li><b>Coroutine Dispatcher:</b> Determines the thread for execution. Dispatchers.Main is used to run coroutine on the main thread. Dispatchers.IO is used for disk or network operations. Dispatchers.Default is used for CPU intensive work.</li>\n
+        <li><b>CoroutineExceptionHandler:</b> Used to handle <i>uncaught</i> exceptions.</li>\n
+        <li><b>CoroutineName:</b> Name given to a coroutine for debugging.</li>\n\nLaunching a coroutine in a new context:</string>
+    <string name="throw_exception">Throw exception</string>
+    <string name="job_in_coroutine_context">When a coroutine is launched using a CoroutineScope, it inherits the context from the scope and the new Job created for this coroutine is tied to the lifecycle of the scope. If the scope is cancelled, the coroutine will be cancelled too.\n\nIf a new Job instance is passed as context to the launch builder within a scope the coroutine inherits context from scope, but the new Job instance becomes the parent of the coroutine. In this case, the coroutine is not cancelled on cancelling the scope.</string>
+    <string name="new_job_in_launch">New Job in launch builder</string>
+    <string name="child_job_example">In the above example, the parent coroutine waits for completion of its child and then completes. When a new Job instance is passed to the launch builder, the new launched coroutine is not tied to the scope and hence operates independently. Note that the new Job instance remains in active state after the child coroutine is completed and should be cancelled in appropriate lifecycle method.</string>
+    <string name="work_done">work done</string>
 </resources>

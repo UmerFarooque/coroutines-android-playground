@@ -30,8 +30,8 @@ class ScopesAndConcurrencyFragment : Fragment() {
             lifecycleScope.launch {
                 updateJobStatus(this, binding.example1)
                 val runningTime = measureTimeMillis {
-                    longRunningTaskSuspend()
-                    longRunningTaskSuspend()
+                    longRunningTaskInBackground()
+                    longRunningTaskInBackground()
                 }
                 binding.example1.log.text = getString(R.string.running_time, runningTime)
             }.showCompletionInView(lifecycleScope, binding.example1)
@@ -41,7 +41,7 @@ class ScopesAndConcurrencyFragment : Fragment() {
             lifecycleScope.launch {
                 updateJobStatus(this, binding.example2)
                 val runningTime = measureTimeMillis {
-                    val jobs = (1..3).map { launch { longRunningTaskSuspend() } }
+                    val jobs = (1..3).map { launch { longRunningTaskInBackground() } }
                     jobs.joinAll()
                 }
                 binding.example2.log.text = getString(R.string.running_time, runningTime)
@@ -59,7 +59,7 @@ class ScopesAndConcurrencyFragment : Fragment() {
             customScope?.launch {
                 updateJobStatus(this, binding.example3)
                 val runningTime = measureTimeMillis {
-                    longRunningTaskSuspend()
+                    longRunningTaskInBackground()
                 }
                 binding.example3.log.text = getString(R.string.running_time, runningTime)
             }?.showCompletionInView(lifecycleScope, binding.example3)
@@ -103,11 +103,11 @@ class ScopesAndConcurrencyFragment : Fragment() {
     private suspend fun someLongRunningTask() = coroutineScope {
         launch {
             updateJobStatus(this, binding.child1)
-            longRunningTaskSuspend(2000)
+            longRunningTaskInBackground(2000)
         }.showCompletionInView(this, binding.child1)
         launch {
             updateJobStatus(this, binding.child2)
-            longRunningTaskSuspend()
+            longRunningTaskInBackground()
         }.showCompletionInView(this, binding.child2)
     }
 

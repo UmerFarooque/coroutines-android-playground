@@ -63,4 +63,14 @@
     <string name="new_job_in_launch">New Job in launch builder</string>
     <string name="child_job_example">In the above example, the parent coroutine waits for completion of its child and then completes. When a new Job instance is passed to the launch builder, the new launched coroutine is not tied to the scope and hence operates independently. Note that the new Job instance remains in active state after the child coroutine is completed and should be cancelled in appropriate lifecycle method.</string>
     <string name="work_done">work done</string>
+
+    <!-- Flow -->
+    <string name="flow_intro">Flow is used to emit multiple values which are computed asynchronously.\n\nPrinting asynchronously computed values using suspend vs. flow.</string>
+    <string name="use_flow">Use Flow</string>
+    <string name="flow_detail">Flow is created using the flow builders such as flow { }, flowOf() or asFlow(). Values can be emitted using the <b>emit()</b> function in flow { }. The code inside flow can suspend and the function that returns a flow need not be marked with the suspend modifier.\n<b>Operators</b>: There are intermediate and terminal flow operators. Flow is started when the terminal operators are called on the flow. The intermediate operators are used to transform the flow, the operators are applied on the upstream flow and return downstream flow.</string>
+    <string name="flow_operators_and_context">In the above example, the flow returns five numbers from 1 through 5. The intermediate operator <b>take(3)</b> only consumes first three elements and <b>map()</b> operator transforms the number to its square and returns result to downstream.\n\nFlow is collected in the context of coroutine in which the collector is called. The context can be changed by using the <b>flowOn</b> operator. The flowOn operator changes the context of the upstream flow and creates another coroutine for an upstream flow when dispatcher is changed in context.\n\nFlow emission on Default dispatcher and collection on Main dispatcher:</string>
+    <string name="buffer_and_conflate"><b>buffer</b> operator is used to run collector and emitter code concurrently.\n<b>conflate</b> operator is used to skip intermediate values when collector is slow.</string>
+    <string name="buffer">Buffer</string>
+    <string name="conflate">Conflate</string>
+
 </resources>

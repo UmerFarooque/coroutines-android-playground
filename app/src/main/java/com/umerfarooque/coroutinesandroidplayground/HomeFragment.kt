@@ -14,7 +14,7 @@ import com.umerfarooque.coroutinesandroidplayground.databinding.FragmentHomeBind
 class HomeFragment : Fragment() {
 
     private var binding: FragmentHomeBinding? = null
-    private val contentsWithDestinations by lazy {
+    private val labelsWithDestinations by lazy {
         with(resources) {
             val contents = getStringArray(R.array.contents)
             val fragmentIds = obtainTypedArray(R.array.fragments).run {
@@ -39,7 +39,7 @@ class HomeFragment : Fragment() {
 
         binding?.contentsRv?.apply {
             val contentsAdapter = ContentsAdapter().apply {
-                setContents(contentsWithDestinations)
+                setContents(labelsWithDestinations)
             }
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             setHasFixedSize(true)

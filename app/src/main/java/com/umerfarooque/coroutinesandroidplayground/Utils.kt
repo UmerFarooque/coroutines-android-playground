@@ -1,9 +1,12 @@
 package com.umerfarooque.coroutinesandroidplayground
 
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.annotation.IntDef
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.umerfarooque.coroutinesandroidplayground.databinding.LayoutCoroutineBinding
 import kotlinx.coroutines.*
 
@@ -21,6 +24,49 @@ fun longRunningTask(duration: Long = 500) {
     }
 }
 
+// Call to update the view when coroutine is launched.
+fun updateJobStatus(scope: CoroutineScope, coroutineLayout: LayoutCoroutineBinding) {
+    coroutineLayout.log.text = ""
+    coroutineLayout.btnPlay.isEnabled = false
+    coroutineLayout.statusTv.setJobStatus(scope)
+}
+
+const val TAG = "C_A_P"
+
+fun log(message: String) {
+    Log.d(TAG, message)
+}
+
+// Scope utils
+
+const val NEW = 0
+const val ACTIVE = 1
+const val COMPLETING = 2
+const val CANCELLING = 3
+const val CANCELLED = 4
+const val COMPLETED = 5
+
+@Target(AnnotationTarget.TYPE, AnnotationTarget.VALUE_PARAMETER)
+@IntDef(NEW, ACTIVE, COMPLETING, CANCELLING, CANCELLED, COMPLETED)
+@kotlin.annotation.Retention(AnnotationRetention.SOURCE)
+annotation class State
+
+fun CoroutineScope.getState(): @State Int? {
+    return coroutineContext[Job]?.getState()
+}
+
+fun Job.getState(): @State Int {
+    return when {
+        isCancelled && !isCompleted -> CANCELLING
+        isActive -> ACTIVE
+        isCancelled -> CANCELLED
+        isCompleted -> COMPLETED
+        else -> NEW
+    }
+}
+
+// Extension functions
+
 fun Fragment.toast(message: String) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 }
@@ -29,7 +75,6 @@ fun Fragment.toast(@StringRes strRes: Int) {
     toast(getString(strRes))
 }
 
-/** Ensure invocation of this method on main thread. */
 fun Job.showCompletionInView(
     scope: CoroutineScope,
     coroutineLayout: LayoutCoroutineBinding
@@ -48,9 +93,13 @@ fun LayoutCoroutineBinding.showAsChildCoroutine() {
     coroutineName.setText(R.string.child)
 }
 
-// Initial state for view. Mostly called when coroutine is launched.
-fun updateJobStatus(scope: CoroutineScope, coroutineLayout: LayoutCoroutineBinding) {
-    coroutineLayout.log.text = ""
-    coroutineLayout.btnPlay.isEnabled = false
-    coroutineLayout.statusTv.setJobStatus(scope)
+inline fun Fragment.runExample(
+    layout: LayoutCoroutineBinding,
+    crossinline block: suspend (LayoutCoroutineBinding) -> Unit
+) {
+    layout.log.text = ""
+    lifecycleScope.launch {
+        updateJobStatus(this, layout)
+        block(layout)
+    }.showCompletionInView(lifecycleScope, layout)
 }

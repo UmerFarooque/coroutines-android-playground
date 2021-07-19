@@ -41,4 +41,10 @@
         android:label="@string/cancellation_and_exception_handling"
         tools:layout="@layout/fragment_cancellation_and_exception" />
 
+    <fragment
+        android:id="@+id/supervisionFragment"
+        android:name="com.umerfarooque.coroutinesandroidplayground.SupervisionFragment"
+        android:label="@string/supervisor_job"
+        tools:layout="@layout/fragment_supervision" />
+
 </navigation>

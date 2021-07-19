@@ -75,10 +75,7 @@ fun Fragment.toast(@StringRes strRes: Int) {
     toast(getString(strRes))
 }
 
-fun Job.showCompletionInView(
-    scope: CoroutineScope,
-    coroutineLayout: LayoutCoroutineBinding
-) {
+fun Job.showCompletionInView(scope: CoroutineScope, coroutineLayout: LayoutCoroutineBinding) {
     invokeOnCompletion { throwable ->
         scope.launch(Dispatchers.Main.immediate) {
             coroutineLayout.btnPlay.isEnabled = true
@@ -95,7 +92,7 @@ fun LayoutCoroutineBinding.showAsChildCoroutine() {
 
 inline fun Fragment.runExample(
     layout: LayoutCoroutineBinding,
-    crossinline block: suspend (LayoutCoroutineBinding) -> Unit
+    crossinline block: suspend (LayoutCoroutineBinding) -> Unit,
 ) {
     layout.log.text = ""
     lifecycleScope.launch {

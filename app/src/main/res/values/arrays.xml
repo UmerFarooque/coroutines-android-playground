@@ -7,6 +7,7 @@
         <item>@string/coroutine_context</item>
         <item>@string/flow</item>
         <item>@string/cancellation_and_exception_handling</item>
+        <item>@string/supervisor_job</item>
     </string-array>
 
     <array name="fragments">
@@ -15,6 +16,7 @@
         <item>@id/coroutineContextFragment</item>
         <item>@id/flowFragment</item>
         <item>@id/cancellationAndExceptionFragment</item>
+        <item>@id/supervisionFragment</item>
     </array>
 
 </resources>

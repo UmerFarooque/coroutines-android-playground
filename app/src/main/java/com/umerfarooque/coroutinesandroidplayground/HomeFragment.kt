@@ -27,7 +27,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         val bindingInstance = FragmentHomeBinding.inflate(inflater, container, false)
         binding = bindingInstance

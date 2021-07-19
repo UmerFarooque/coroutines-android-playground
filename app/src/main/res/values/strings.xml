@@ -12,14 +12,16 @@
     <string name="parent">Parent:</string>
     <string name="child">Child:</string>
     <string name="running_time">t=<xliff:g id="time">%d</xliff:g> ms</string>
+    <string name="caught_exception">Caught <xliff:g id="exception">%1$s</xliff:g></string>
     <string name="scope_not_created">Scope not created</string>
 
-    <!-- Contents -->
+    <!-- Labels -->
     <string name="coroutines_basics">Coroutines Basics</string>
     <string name="scopes_and_concurrency">Scopes and Concurrency</string>
     <string name="coroutine_context">Coroutine Context</string>
     <string name="flow">Flow</string>
     <string name="cancellation_and_exception_handling">Cancellation and Exception Handling</string>
+    <string name="supervisor_job">Supervision</string>
 
     <!-- Coroutine Basics -->
     <string name="about_main_thread">The main thread also known as UI thread is responsible for rendering UI. Do not execute long running tasks on this thread as this can block the rendering and UI becomes janky by skipping frames. This problem can be solved by running these tasks on a different thread.\n\nRun a task for 500ms</string>
@@ -72,5 +74,15 @@
     <string name="buffer_and_conflate"><b>buffer</b> operator is used to run collector and emitter code concurrently.\n<b>conflate</b> operator is used to skip intermediate values when collector is slow.</string>
     <string name="buffer">Buffer</string>
     <string name="conflate">Conflate</string>
+
+    <!-- Cancellation and Exception Handling -->
+    <string name="cancellation">Launched coroutines can be cancelled by calling <b>cancel()</b> on its Job. Calling cancel() on a scope cancels all the coroutines within that scope.\nCode running in computation should check for cancellation to be cancellable otherwise it will run until completion. Use <b>isActive</b>, <b>ensureActive()</b> or <b>yield()</b> to check for cancellation.\n\nCancelling the job at 500ms which completes in 3sec.</string>
+    <string name="cooperative_cancellation">Cooperative cancellation</string>
+    <string name="cancellation_exception_and_exception_handling">Cancellable suspend functions throw <b>CancellationException</b> when cancelled. This can be handled using a try{} finally{} block. Since a cancelling coroutine cannot suspend, any resource cleanup work can be done in finally block using <b>withContext(NonCancellable)</b>.\n\n<big><b>Exception Handling</b></big>\nIf an exception other than CancellationException is thrown in a coroutine, it is cancelled and the exception is delegated to parent coroutine until the <i>root coroutine</i>. A root coroutine is one which is not a child of another coroutine.\nExceptions can be caught using a try catch block or <b>CoroutineExceptionHandler</b>. The CoroutineExceptionHandler ignores CancellationException and should be installed in root coroutine otherwise it will have no effect. Exceptions are exposed to users when using async{} or propagated automatically when using launch{}.</string>
+    <string name="exception_details">In the above example, child1 throws RuntimeException which is delegated to its parent which is the root coroutine. The sibling of child1 is cancelled and the parent. The exception is caught in the CoroutineExceptionHandler installed in parent (root) coroutine, without the handler the <i>application would crash</i>.\n\n<b>Flow</b>\nFlow can be cancelled by cancelling the coroutine which is collecting the flow. Exceptions can be caught by surrounding the collect operator with a try catch or using the catch operator. The <b>catch</b> operator catches only upstream exceptions. A busy flow can be made cancellable using the <b>cancellable</b> operator.</string>
+
+    <!-- Supervisor Job -->
+    <string name="supervisor_job_desc">A <b>SupervisorJob</b> is a job in which cancellation is propagated only downwards. Failure of a child coroutine does not affect its siblings and the parent coroutine ignores the failure.</string>
+    <string name="supervisor_scope_desc">A supervisorScope can be used to achieve the same behavior along with scoped concurrency.</string>
 
 </resources>

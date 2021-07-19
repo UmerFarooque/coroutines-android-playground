@@ -17,7 +17,7 @@ class CoroutineContextFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         binding = FragmentCoroutineContextBinding.inflate(inflater)
         return binding.root
@@ -27,7 +27,9 @@ class CoroutineContextFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
-            lifecycleScope.launch { toast("Caught ${throwable.javaClass.simpleName} in handler") }
+            lifecycleScope.launch {
+                toast(getString(R.string.caught_exception, throwable.javaClass.simpleName))
+            }
         }
         val newContext = Dispatchers.Default + exceptionHandler + CoroutineName("ExampleCoroutine")
         binding.newContextExample.btnPlay.setOnClickListener {

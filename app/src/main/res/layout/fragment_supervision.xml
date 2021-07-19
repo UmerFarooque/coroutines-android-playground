@@ -10,54 +10,25 @@
         android:padding="@dimen/margin_medium">
 
         <TextView
-            android:id="@+id/cancellation_intro"
+            android:id="@+id/supervisor_job"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:lineSpacingMultiplier="1.2"
-            android:text="@string/cancellation"
+            android:text="@string/supervisor_job_desc"
             android:textAppearance="?textAppearanceBody2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <include
-            android:id="@+id/cancellation"
-            layout="@layout/layout_coroutine"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cancellation_intro" />
-
-        <com.google.android.material.checkbox.MaterialCheckBox
-            android:id="@+id/cooperative_check"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/cooperative_cancellation"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cancellation" />
-
-        <TextView
-            android:id="@+id/exception_handling_tv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:lineSpacingMultiplier="1.2"
-            android:text="@string/cancellation_exception_and_exception_handling"
-            android:textAppearance="?textAppearanceBody2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cooperative_check" />
-
-        <include
-            android:id="@+id/parent_job"
+            android:id="@+id/supervisor_parent"
             layout="@layout/layout_coroutine"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/exception_handling_tv" />
+            app:layout_constraintTop_toBottomOf="@id/supervisor_job" />
 
         <include
             android:id="@+id/child1"
@@ -66,7 +37,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/parent_job" />
+            app:layout_constraintTop_toBottomOf="@id/supervisor_parent" />
 
         <include
             android:id="@+id/child2"
@@ -78,25 +49,44 @@
             app:layout_constraintTop_toBottomOf="@id/child1" />
 
         <TextView
-            android:id="@+id/exception_details"
+            android:id="@+id/supervisor_scope_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"
             android:lineSpacingMultiplier="1.2"
-            android:text="@string/exception_details"
+            android:text="@string/supervisor_scope_desc"
             android:textAppearance="?textAppearanceBody2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/child2" />
 
         <include
-            android:id="@+id/flow_exception"
+            android:id="@+id/supervisor_scope"
+            layout="@layout/layout_coroutine"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/supervisor_scope_tv" />
+
+        <include
+            android:id="@+id/supervisor_child1"
             layout="@layout/layout_coroutine"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/exception_details" />
+            app:layout_constraintTop_toBottomOf="@id/supervisor_scope" />
+
+        <include
+            android:id="@+id/supervisor_child2"
+            layout="@layout/layout_coroutine"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/supervisor_child1" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -47,4 +47,10 @@
         android:label="@string/supervisor_job"
         tools:layout="@layout/fragment_supervision" />
 
+    <fragment
+        android:id="@+id/suspendFunctionsFragment"
+        android:name="com.umerfarooque.coroutinesandroidplayground.SuspendFunctionsFragment"
+        android:label="@string/suspend_functions"
+        tools:layout="@layout/fragment_suspend_functions" />
+
 </navigation>

@@ -17,6 +17,7 @@
 
     <!-- Labels -->
     <string name="coroutines_basics">Coroutines Basics</string>
+    <string name="suspend_functions">Suspend Functions</string>
     <string name="scopes_and_concurrency">Scopes and Concurrency</string>
     <string name="coroutine_context">Coroutine Context</string>
     <string name="flow">Flow</string>
@@ -35,6 +36,10 @@
         <li><b>CoroutineContext:</b> Coroutines are executed in a CoroutineContext which contains a set of elements like <b>Job</b> and <b>CoroutineDispatcher</b>. Dispatchers determine which thread to be used for coroutine execution. In the above example Dispatchers.Default is used which is optimized to perform CPU intensive work.</li>
         \n\n<b>Note: </b> Running the above task in a coroutine on the main dispatcher still blocks the main thread.
     </string>
+
+    <!-- Suspend Functions -->
+    <string name="suspend_functions_desc">When a coroutine is suspended, it is <i>removed from thread and stored in memory</i>. The released thread can now execute other coroutines. When the suspended coroutine resumes, it can be executed on the same or different thread.\n\nFunctions can be made suspendable by adding the <b>suspend</b> modifier. Suspend functions can only be called from a coroutine or other suspend functions. They make code more readable by eliminating callbacks and the code looks similar to regular sequential code.\n\nRunning a sequence of long running tasks using suspend functions.</string>
+    <string name="suspend_example"><b>delay()</b> is a suspend function which delays coroutine for a given duration without blocking the thread.</string>
 
     <!-- Scopes and Concurrency -->
     <string name="scope_intro">A <b>CoroutineScope</b> defines the lifetime of coroutines launched from it. Scope is used to achieve <b>Structured Concurrency</b> and establish parent child relationships between coroutines. An outer scope completes only when all of its children coroutines complete.
@@ -79,10 +84,10 @@
     <string name="cancellation">Launched coroutines can be cancelled by calling <b>cancel()</b> on its Job. Calling cancel() on a scope cancels all the coroutines within that scope.\nCode running in computation should check for cancellation to be cancellable otherwise it will run until completion. Use <b>isActive</b>, <b>ensureActive()</b> or <b>yield()</b> to check for cancellation.\n\nCancelling the job at 500ms which completes in 3sec.</string>
     <string name="cooperative_cancellation">Cooperative cancellation</string>
     <string name="cancellation_exception_and_exception_handling">Cancellable suspend functions throw <b>CancellationException</b> when cancelled. This can be handled using a try{} finally{} block. Since a cancelling coroutine cannot suspend, any resource cleanup work can be done in finally block using <b>withContext(NonCancellable)</b>.\n\n<big><b>Exception Handling</b></big>\nIf an exception other than CancellationException is thrown in a coroutine, it is cancelled and the exception is delegated to parent coroutine until the <i>root coroutine</i>. A root coroutine is one which is not a child of another coroutine.\nExceptions can be caught using a try catch block or <b>CoroutineExceptionHandler</b>. The CoroutineExceptionHandler ignores CancellationException and should be installed in root coroutine otherwise it will have no effect. Exceptions are exposed to users when using async{} or propagated automatically when using launch{}.</string>
-    <string name="exception_details">In the above example, child1 throws RuntimeException which is delegated to its parent which is the root coroutine. The sibling of child1 is cancelled and the parent. The exception is caught in the CoroutineExceptionHandler installed in parent (root) coroutine, without the handler the <i>application would crash</i>.\n\n<b>Flow</b>\nFlow can be cancelled by cancelling the coroutine which is collecting the flow. Exceptions can be caught by surrounding the collect operator with a try catch or using the catch operator. The <b>catch</b> operator catches only upstream exceptions. A busy flow can be made cancellable using the <b>cancellable</b> operator.</string>
+    <string name="exception_details">In the above example, child1 throws RuntimeException which is delegated to its parent which is the root coroutine. The sibling of child1 is cancelled and the parent too. The exception is caught in the CoroutineExceptionHandler installed in parent (root) coroutine, without the handler the <i>application would crash</i>.\n\n<b>Flow</b>\nFlow can be cancelled by cancelling the coroutine which is collecting the flow. Exceptions can be caught by surrounding the collect operator with a try catch or using the catch operator. The <b>catch</b> operator catches only upstream exceptions. A busy flow can be made cancellable using the <b>cancellable</b> operator.</string>
 
     <!-- Supervisor Job -->
     <string name="supervisor_job_desc">A <b>SupervisorJob</b> is a job in which cancellation is propagated only downwards. Failure of a child coroutine does not affect its siblings and the parent coroutine ignores the failure.</string>
-    <string name="supervisor_scope_desc">A supervisorScope can be used to achieve the same behavior along with scoped concurrency.</string>
+    <string name="supervisor_scope_desc">A <b>supervisorScope</b> can be used to achieve the same behavior along with scoped concurrency.</string>
 
 </resources>

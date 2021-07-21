@@ -16,8 +16,8 @@
         android:textAppearance="?textAppearanceBody2"
         tools:text="@string/status" />
 
-    <com.umerfarooque.coroutinesandroidplayground.StatusTextView
-        android:id="@+id/status_tv"
+    <com.umerfarooque.coroutinesandroidplayground.JobStateTextView
+        android:id="@+id/state_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_small"
@@ -39,8 +39,8 @@
 
     <Button
         android:id="@+id/btn_play"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         android:background="@drawable/ic_baseline_play_arrow_24" />
 
 </LinearLayout>

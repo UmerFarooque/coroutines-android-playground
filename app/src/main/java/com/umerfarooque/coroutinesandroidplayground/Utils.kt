@@ -25,10 +25,10 @@ fun longRunningTask(duration: Long = 500) {
 }
 
 // Call to update the view when coroutine is launched.
-fun updateJobStatus(scope: CoroutineScope, coroutineLayout: LayoutCoroutineBinding) {
+fun updateJobState(scope: CoroutineScope, coroutineLayout: LayoutCoroutineBinding) {
     coroutineLayout.log.text = ""
     coroutineLayout.btnPlay.isEnabled = false
-    coroutineLayout.statusTv.setJobStatus(scope)
+    coroutineLayout.stateTv.setJobState(scope)
 }
 
 const val TAG = "C_A_P"
@@ -50,10 +50,6 @@ const val COMPLETED = 5
 @IntDef(NEW, ACTIVE, COMPLETING, CANCELLING, CANCELLED, COMPLETED)
 @kotlin.annotation.Retention(AnnotationRetention.SOURCE)
 annotation class State
-
-fun CoroutineScope.getState(): @State Int? {
-    return coroutineContext[Job]?.getState()
-}
 
 fun Job.getState(): @State Int {
     return when {
@@ -79,7 +75,7 @@ fun Job.showCompletionInView(scope: CoroutineScope, coroutineLayout: LayoutCorou
     invokeOnCompletion { throwable ->
         scope.launch(Dispatchers.Main.immediate) {
             coroutineLayout.btnPlay.isEnabled = true
-            coroutineLayout.statusTv.setCompletionStatus(throwable)
+            coroutineLayout.stateTv.setCompletionState(throwable)
         }
     }
 }
@@ -96,7 +92,7 @@ inline fun Fragment.runExample(
 ) {
     layout.log.text = ""
     lifecycleScope.launch {
-        updateJobStatus(this, layout)
+        updateJobState(this, layout)
         block(layout)
     }.showCompletionInView(lifecycleScope, layout)
 }

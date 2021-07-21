@@ -3,6 +3,7 @@
 
     <string-array name="contents">
         <item>@string/coroutines_basics</item>
+        <item>@string/suspend_functions</item>
         <item>@string/scopes_and_concurrency</item>
         <item>@string/coroutine_context</item>
         <item>@string/flow</item>
@@ -12,6 +13,7 @@
 
     <array name="fragments">
         <item>@id/coroutineBasicsFragment</item>
+        <item>@id/suspendFunctionsFragment</item>
         <item>@id/scopesAndConcurrencyFragment</item>
         <item>@id/coroutineContextFragment</item>
         <item>@id/flowFragment</item>

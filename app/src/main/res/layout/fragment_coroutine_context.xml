@@ -51,7 +51,7 @@
             app:layout_constraintTop_toBottomOf="@id/check_exception" />
 
         <include
-            android:id="@+id/job_example_1"
+            android:id="@+id/job_in_context_example"
             layout="@layout/layout_coroutine"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/job_example_1" />
+            app:layout_constraintTop_toBottomOf="@id/job_in_context_example" />
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/check_new_job"

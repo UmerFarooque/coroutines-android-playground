@@ -7,12 +7,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.umerfarooque.coroutinesandroidplayground.databinding.FragmentCoroutineContextBinding
+import com.umerfarooque.coroutinesandroidplayground.databinding.LayoutCoroutineBinding
 import kotlinx.coroutines.*
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.EmptyCoroutineContext
 
 class CoroutineContextFragment : Fragment() {
 
     private lateinit var binding: FragmentCoroutineContextBinding
-    private var job: Job? = null
+    private var newJob: Job? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,6 +23,8 @@ class CoroutineContextFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         binding = FragmentCoroutineContextBinding.inflate(inflater)
+        binding.jobInContextExample.coroutineName.text = getString(R.string.parent)
+        binding.childJob.showAsChildCoroutine()
         return binding.root
     }
 
@@ -33,46 +38,39 @@ class CoroutineContextFragment : Fragment() {
         }
         val newContext = Dispatchers.Default + exceptionHandler + CoroutineName("ExampleCoroutine")
         binding.newContextExample.btnPlay.setOnClickListener {
-            val throwException = binding.checkException.isChecked
-            lifecycleScope.launch(newContext) {
-                val scope = this
-                withContext(Dispatchers.Main) {
-                    updateJobStatus(scope, binding.newContextExample)
-                }
-                longRunningTask()
-                if (throwException) throw RuntimeException()
-            }.showCompletionInView(lifecycleScope, binding.newContextExample)
+            newContextExample(newContext)
         }
 
-        binding.jobExample1.coroutineName.text = getString(R.string.parent)
-        binding.childJob.run {
-            coroutineName.text = getString(R.string.child)
-            btnPlay.visibility = View.GONE
+        binding.jobInContextExample.btnPlay.setOnClickListener {
+            runExample(binding.jobInContextExample, ::jobInContextExample)
         }
-        binding.jobExample1.btnPlay.setOnClickListener {
-            val addNewJob = binding.checkNewJob.isChecked
-            lifecycleScope.launch {
-                updateJobStatus(this, binding.jobExample1)
-                if (addNewJob) {
-                    job = Job()
-                    launch(job!!) {
-                        updateJobStatus(this, binding.childJob)
-                        delay(2000)
-                    }.showCompletionInView(lifecycleScope, binding.childJob)
-                } else {
-                    launch {
-                        updateJobStatus(this, binding.childJob)
-                        delay(2000)
-                    }.showCompletionInView(lifecycleScope, binding.childJob)
-                }
-                delay(500)
-                binding.jobExample1.log.text = getString(R.string.work_done)
-            }.showCompletionInView(lifecycleScope, binding.jobExample1)
-        }
+    }
+
+    private fun newContextExample(newContext: CoroutineContext) {
+        val throwException = binding.checkException.isChecked
+        lifecycleScope.launch(newContext) {
+            val scope = this
+            withContext(Dispatchers.Main) { // Update UI on main thread
+                updateJobState(scope, binding.newContextExample)
+            }
+            longRunningTask()
+            if (throwException) throw RuntimeException()
+        }.showCompletionInView(lifecycleScope, binding.newContextExample)
+    }
+
+    private suspend fun jobInContextExample(layout: LayoutCoroutineBinding): Unit = coroutineScope {
+        val addNewJob = binding.checkNewJob.isChecked
+        val context = if (addNewJob) newJob!! else EmptyCoroutineContext
+        launch(context) {
+            updateJobState(this, binding.childJob)
+            delay(2000)
+        }.showCompletionInView(lifecycleScope, binding.childJob)
+        delay(500)
+        layout.log.text = getString(R.string.work_done)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        job?.cancel()
+        newJob?.cancel()
     }
 }

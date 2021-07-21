@@ -24,6 +24,8 @@ class CancellationAndExceptionFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         binding = FragmentCancellationAndExceptionBinding.inflate(inflater)
+        binding.child1.showAsChildCoroutine()
+        binding.child2.showAsChildCoroutine()
         return binding.root
     }
 
@@ -34,8 +36,6 @@ class CancellationAndExceptionFragment : Fragment() {
             runExample(binding.cancellation, ::cancellationExample)
         }
 
-        binding.child1.showAsChildCoroutine()
-        binding.child2.showAsChildCoroutine()
         binding.parentJob.btnPlay.setOnClickListener {
             val handler = CoroutineExceptionHandler { _, throwable ->
                 toast(getString(R.string.caught_exception, throwable.javaClass.simpleName))

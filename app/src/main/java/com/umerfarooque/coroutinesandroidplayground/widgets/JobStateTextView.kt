@@ -1,10 +1,11 @@
-package com.umerfarooque.coroutinesandroidplayground
+package com.umerfarooque.coroutinesandroidplayground.widgets
 
 import android.content.Context
 import android.util.AttributeSet
 import androidx.annotation.ColorRes
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
+import com.umerfarooque.coroutinesandroidplayground.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 

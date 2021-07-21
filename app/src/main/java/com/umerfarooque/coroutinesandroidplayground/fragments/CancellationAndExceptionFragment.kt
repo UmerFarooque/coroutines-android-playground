@@ -1,4 +1,4 @@
-package com.umerfarooque.coroutinesandroidplayground
+package com.umerfarooque.coroutinesandroidplayground.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.umerfarooque.coroutinesandroidplayground.*
 import com.umerfarooque.coroutinesandroidplayground.databinding.FragmentCancellationAndExceptionBinding
 import com.umerfarooque.coroutinesandroidplayground.databinding.LayoutCoroutineBinding
 import kotlinx.coroutines.*

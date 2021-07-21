@@ -1,4 +1,4 @@
-package com.umerfarooque.coroutinesandroidplayground
+package com.umerfarooque.coroutinesandroidplayground.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

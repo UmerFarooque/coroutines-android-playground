@@ -16,7 +16,7 @@
         android:textAppearance="?textAppearanceBody2"
         tools:text="@string/status" />
 
-    <com.umerfarooque.coroutinesandroidplayground.JobStateTextView
+    <com.umerfarooque.coroutinesandroidplayground.widgets.JobStateTextView
         android:id="@+id/state_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

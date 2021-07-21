@@ -1,4 +1,4 @@
-package com.umerfarooque.coroutinesandroidplayground
+package com.umerfarooque.coroutinesandroidplayground.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.umerfarooque.coroutinesandroidplayground.R
 import com.umerfarooque.coroutinesandroidplayground.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {

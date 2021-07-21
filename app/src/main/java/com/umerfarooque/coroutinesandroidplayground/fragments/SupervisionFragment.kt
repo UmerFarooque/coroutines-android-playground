@@ -1,4 +1,4 @@
-package com.umerfarooque.coroutinesandroidplayground
+package com.umerfarooque.coroutinesandroidplayground.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.umerfarooque.coroutinesandroidplayground.R
 import com.umerfarooque.coroutinesandroidplayground.databinding.FragmentSupervisionBinding
+import com.umerfarooque.coroutinesandroidplayground.showAsChildCoroutine
+import com.umerfarooque.coroutinesandroidplayground.showCompletionInView
+import com.umerfarooque.coroutinesandroidplayground.toast
 import kotlinx.coroutines.*
 
 class SupervisionFragment : Fragment() {

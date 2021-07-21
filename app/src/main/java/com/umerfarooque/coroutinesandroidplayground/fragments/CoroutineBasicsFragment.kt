@@ -1,4 +1,4 @@
-package com.umerfarooque.coroutinesandroidplayground
+package com.umerfarooque.coroutinesandroidplayground.fragments
 
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
@@ -10,6 +10,7 @@ import android.view.ViewTreeObserver
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.umerfarooque.coroutinesandroidplayground.databinding.FragmentCoroutineBasicsBinding
+import com.umerfarooque.coroutinesandroidplayground.longRunningTask
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

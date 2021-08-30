@@ -61,7 +61,11 @@ class CoroutineContextFragment : Fragment() {
 
     private suspend fun jobInContextExample(layout: LayoutCoroutineBinding): Unit = coroutineScope {
         val addNewJob = binding.checkNewJob.isChecked
-        val context = if (addNewJob) newJob!! else EmptyCoroutineContext
+        val context = if (addNewJob) {
+            Job().also { newJob = it }
+        } else {
+            EmptyCoroutineContext
+        }
         launch(context) {
             updateJobState(this, binding.childJob)
             delay(2000)
